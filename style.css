@@ -2,15 +2,17 @@
 
 :root {
   --color-primary-light: #FFD180;
-  /* Light Orange */
   --color-primary-main: #FFAB40;
-  /* Main Orange */
   --color-primary-dark: #FFA020;
-  /* Darker Orange */
   --color-accent: #333;
-  /* Dark for contrast */
   --color-text-light: #fff;
   --color-text-dark: #333;
+
+  /* warna untuk Dark Mode */
+  --dark-bg: #1a1a1a;
+  --dark-card-bg: #242424;
+  --dark-text: #f0f0f0;
+  --dark-nav-bg: #2c2c2c;
 }
 
 * {
@@ -41,7 +43,6 @@ header {
   background-image: url(img/main-image.png);
   background-size: cover;
   background-position: top;
-  /* Tailwind-like overlay */
   position: relative;
 }
 
@@ -63,7 +64,6 @@ header::before {
   width: 100%;
   height: 100vh;
   background-color: rgb(0, 0, 0, 0.3);
-  /* Ensure it's above the ::before pseudo-element */
   z-index: 1;
 }
 
@@ -72,13 +72,11 @@ header::before {
   color: var(--color-text-light);
   font-size: 1.1rem;
   max-width: 600px;
-  /* Constrain width for better readability */
   padding: 0 20px;
 }
 
 .jumbotron .text-content h1 {
   font-size: 3.5rem;
-  /* Larger heading */
   font-weight: 700;
   margin-bottom: 1rem;
   line-height: 1.2;
@@ -86,7 +84,6 @@ header::before {
 
 .jumbotron .text-content p {
   font-size: 1.3rem;
-  /* Slightly larger paragraph */
   font-weight: 300;
 }
 
@@ -100,17 +97,14 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 2rem;
-  /* Tailwind-like padding */
   transition: all 0.3s ease-in-out;
   background: rgb(255, 255, 255);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  /* Smoother transition */
 }
 
 nav ul {
   display: flex;
   gap: 2.5rem;
-  /* Tailwind-like spacing */
 }
 
 nav ul li {
@@ -120,16 +114,13 @@ nav ul li {
 nav>ul>li>a {
   text-decoration: none;
   font-size: 1.1rem;
-  /* Slightly smaller for sleekness */
   font-weight: 600;
   color: var(--color-primary-main);
   padding: 0.5rem 0;
-  /* Add padding for clickable area */
   position: relative;
 }
 
 nav>ul>li>a::after {
-  /* Underline effect for hover */
   content: '';
   position: absolute;
   bottom: 0;
@@ -146,16 +137,13 @@ nav>ul>li>a:hover::after {
 
 nav>ul>li>a:hover {
   color: var(--color-primary-light);
-  /* Lighter on hover */
 }
 
 mark {
   background-color: var(--color-primary-main);
   color: var(--color-text-light);
   padding: 0.25rem 0.5rem;
-  /* More subtle padding */
   border-radius: 0.25rem;
-  /* Slightly rounded */
 }
 
 main {
@@ -169,32 +157,24 @@ main {
 .flex-container {
   position: relative;
   top: -6rem;
-  /* Adjusted for better flow */
   display: flex;
   column-gap: 1.5rem;
-  /* Larger gap */
   padding: 0 1rem;
-  /* Horizontal padding */
   max-width: 1200px;
-  /* Constrain max width */
   width: 100%;
 }
 
 .judul {
   display: flex;
   padding: 1.25rem;
-  /* Consistent padding */
   column-gap: 1rem;
   background-color: var(--color-primary-light);
   border-radius: 0.5rem 0.5rem 0 0;
-  /* Rounded corners */
   align-items: center;
-  /* Center items vertically */
 }
 
 .judul h2 {
   font-size: 1.5rem;
-  /* Larger heading */
   color: var(--color-text-light);
   font-weight: 700;
 }
@@ -203,58 +183,43 @@ main {
   background-color: #ffb74d;
 }
 
-/* Orange 300-ish */
 .judul.judul2 {
   background-color: #ffa726;
 }
 
-/* Orange 400-ish */
 .judul.judul3 {
   background-color: #ff9800;
 }
 
-/* Orange 500-ish */
-
-
 .judul img {
   width: 50px;
-  /* Slightly smaller icons */
   height: 50px;
   object-fit: contain;
-  /* Ensure icons fit without cropping */
 }
 
 .flex-item {
   background-color: #fff;
   flex: 1;
   border-radius: 0.75rem;
-  /* More rounded */
   overflow: hidden;
-  /* Hide overflow for rounded images */
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  /* Tailwind shadow-lg */
   transition: transform 0.2s ease-in-out;
 }
 
 .flex-item:hover {
   transform: translateY(-5px);
-  /* Lift effect on hover */
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  /* Stronger shadow on hover */
 }
 
 .flex-item .img img {
   width: 100%;
   height: 250px;
-  /* Taller images */
   object-fit: cover;
   object-position: center;
-  /* Center position for better crops */
 }
 
 .flex-item .caption {
   padding: 1.25rem;
-  /* Consistent padding */
 }
 
 .flex-item .caption h3 {
@@ -278,9 +243,7 @@ main {
   color: var(--color-text-light);
   font-size: 1rem;
   padding: 0.75rem 1.5rem;
-  /* Larger button */
   border-radius: 0.5rem;
-  /* Rounded button */
   cursor: pointer;
   transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
@@ -288,30 +251,24 @@ main {
 .caption button:hover {
   background-color: var(--color-primary-dark);
   transform: translateY(-2px);
-  /* Lift effect on hover */
 }
 
 aside>i {
   position: fixed;
   right: 0;
-  /* Spacing from edge */
   top: 50%;
   transform: translate(0, -50%);
   color: var(--color-primary-light);
   background-color: var(--color-primary-main);
   padding: 0.75rem;
-  /* Larger padding */
   border-radius: 0.75rem 0 0 0.75rem;
-  /* More rounded, only left side */
   font-size: 2.25rem;
-  /* Larger icon */
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   border: 2px solid var(--color-primary-light);
   border-right: 0;
   z-index: 8;
   box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.1);
-  /* Subtle shadow */
 }
 
 aside>i:hover {
@@ -322,13 +279,10 @@ aside>i:hover {
 .social-media {
   position: fixed;
   right: -4rem;
-  /* Adjusted for wider panel */
   top: 50%;
   transform: translate(0, -50%);
   background-color: var(--color-primary-main);
   padding: 1rem;
-  /* padding: 0 1rem; */
-  /* Larger padding */
   border-radius: 0.75rem 0 0 0.75rem;
   transition: all 0.3s ease-in-out;
   border: 2px solid var(--color-primary-light);
@@ -336,65 +290,53 @@ aside>i:hover {
   display: flex;
   align-items: center;
   box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.1);
-  /* Subtle shadow */
 }
 
 .social-media ul {
   display: flex;
   flex-direction: column;
-  /* Stack icons vertically */
   row-gap: 1rem;
-  /* Spacing between icons */
   text-align: center;
   list-style: none;
 }
 
 .social-media a {
   font-size: 1.6rem;
-  /* Larger icons */
   color: var(--color-primary-light);
   transition: all 0.2s ease-in-out;
 }
 
 .social-media a:hover {
   transform: scale(1.1);
-  /* Slight enlarge on hover */
 }
 
 .fa-instagram:hover {
   color: #E1306C;
 }
 
-/* Instagram brand color */
 .fa-x-twitter:hover {
   color: #000;
 }
 
-/* Twitter brand color */
 .fa-facebook:hover {
   color: #1877F2;
 }
 
-/* Facebook brand color */
 .fa-youtube:hover {
   color: #FF0000;
 }
 
-/* YouTube brand color */
 .fa-linkedin:hover {
   color: #0A66C2;
 }
 
-/* LinkedIn brand color */
 
 .social-media.active {
   right: 0;
-  /* Adjust to show more */
 }
 
 aside>i.active {
   right: 4rem;
-  /* Adjust to match social media width */
 }
 
 .content {
@@ -404,7 +346,6 @@ aside>i.active {
   justify-content: center;
   gap: 1.5rem;
   margin-top: 2rem;
-  /* Add some top margin */
   padding: 0 1rem;
 }
 
@@ -414,7 +355,6 @@ aside>i.active {
   padding: 1.5rem;
   border-radius: 0.75rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  /* Tailwind shadow-md */
   background-color: #fff;
   transition: transform 0.2s ease-in-out;
 }
@@ -422,7 +362,6 @@ aside>i.active {
 .content article:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  /* Tailwind shadow-lg */
 }
 
 .head-article img {
@@ -432,7 +371,6 @@ aside>i.active {
   object-position: center;
   margin: 1rem 0;
   border-radius: 0.5rem;
-  /* Rounded images */
 }
 
 .description h3 {
@@ -452,10 +390,8 @@ aside>i.active {
 .description a {
   text-decoration: none;
   color: var(--color-primary-main);
-  /* Link color */
   font-weight: 500;
   display: inline-flex;
-  /* Align icon better */
   align-items: center;
   gap: 0.25rem;
   transition: color 0.2s ease-in-out;
@@ -467,36 +403,28 @@ aside>i.active {
 
 .fa-arrow-right {
   transform: translateY(1px);
-  /* Fine-tune alignment */
 }
 
 footer {
   background: var(--color-primary-main);
   width: 100%;
   margin-top: 4rem;
-  /* Larger top margin */
   padding: 2rem 0;
-  /* Vertical padding */
   color: var(--color-text-light);
-  /* Text color for footer */
 }
 
 .footer-content {
   display: flex;
   justify-content: space-between;
   padding: 0 2rem;
-  /* Horizontal padding */
   max-width: 1200px;
   margin: 0 auto;
-  /* Center content */
   flex-wrap: wrap;
-  /* Allow wrapping on smaller screens */
   gap: 2rem;
 }
 
 .footer-content div {
   margin: 0;
-  /* Remove individual margins, use gap */
 }
 
 .footer-content h2 {
@@ -508,7 +436,6 @@ footer {
 .contact,
 .latest_post {
   flex: 0 0 250px;
-  /* Slightly larger fixed width */
 }
 
 .contact ul {
@@ -517,7 +444,6 @@ footer {
 
 .contact i {
   font-size: 1.3rem;
-  /* Larger icons */
   margin-right: 0.5rem;
 }
 
@@ -542,7 +468,6 @@ footer {
 .random_quotes {
   flex: 1 1 auto;
   min-width: 250px;
-  /* Ensure it doesn't get too small */
 }
 
 .random_quotes p {
@@ -551,7 +476,6 @@ footer {
   font-size: 1rem;
   line-height: 1.6;
   font-style: italic;
-  /* Italic for quotes */
 }
 
 .random_quotes h3 {
@@ -565,13 +489,11 @@ footer {
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  /* Stack elements */
   border-radius: 0.5rem;
   cursor: grab;
   position: relative;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   margin-top: 1rem;
-  /* Adjust margin */
 }
 
 .box_post::before {
@@ -582,9 +504,7 @@ footer {
   rotate: 45deg;
   background: var(--color-primary-light);
   top: -7px;
-  /* Position at the top edge */
   left: 1.5rem;
-  /* Align with content */
   transform: translateX(-50%);
 }
 
@@ -596,12 +516,10 @@ footer {
 
 .box_post .post-header img {
   width: 30px;
-  /* Smaller icon */
   height: 30px;
   object-fit: contain;
   margin-right: 0.5rem;
   rotate: 0deg !important;
-  /* Reset rotation */
 }
 
 .box_post p {
@@ -613,14 +531,12 @@ footer {
 }
 
 .box_post img:nth-child(3) {
-  /* Targeting the main post image */
   min-width: 0;
   width: 100%;
   margin-top: 0.75rem;
   margin-bottom: 1rem;
   border-radius: 0.25rem;
   max-height: 200px;
-  /* Constrain image height */
   object-fit: cover;
 }
 
@@ -650,9 +566,7 @@ footer {
   font-size: 0.9rem;
   text-align: center;
   padding: 1.5rem 0 0;
-  /* Add top padding */
   border-top: 1px solid rgba(255, 255, 255, 0.2);
-  /* Subtle separator */
   margin-top: 2rem;
 }
 
@@ -660,8 +574,83 @@ footer {
   display: none;
 }
 
-/* Responsive adjustments */
+body.dark-mode {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
+}
+
+body.dark-mode nav {
+  background-color: var(--dark-nav-bg);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .flex-item,
+body.dark-mode .content article {
+  background-color: var(--dark-card-bg);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+  border-color: #444;
+}
+
+body.dark-mode .flex-item .caption h3,
+body.dark-mode .description h3 {
+  color: var(--dark-text);
+}
+
+body.dark-mode .flex-item .caption p,
+body.dark-mode .description p {
+  color: #ccc;
+}
+
+body.dark-mode h1 {
+  color: var(--dark-text);
+}
+
+body.dark-mode nav ul {
+  background-color: var(--dark-nav-bg);
+}
+
+.theme-switcher {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 20px;
+  background-color: #e0e0e0;
+  position: relative;
+}
+
+.theme-switcher i {
+  font-size: 1rem;
+  padding: 4px 6px;
+  color: var(--color-primary-main);
+  transition: color 0.3s ease-in-out;
+}
+
+.theme-switcher .fa-moon {
+  display: none;
+}
+
+body.dark-mode .theme-switcher {
+  background-color: #444;
+}
+
+body.dark-mode .theme-switcher .fa-sun {
+  display: none;
+}
+
+body.dark-mode .theme-switcher .fa-moon {
+  display: block;
+  color: #f0f0f0;
+}
+
 @media screen and (max-width: 860px) {
+  .theme-switcher {
+    position: absolute;
+    top: 1rem;
+    right: 5rem;
+  }
+
   @keyframes revNavbarAnimation {
     0% {
       height: 75vh;
@@ -692,26 +681,22 @@ footer {
 
   main {
     margin: 0.5rem 1rem;
-    /* Reduced margin */
   }
 
   .flex-container {
     flex-direction: column;
     top: -4rem;
-    /* Adjusted for smaller screens */
     gap: 1.5rem;
   }
 
   .flex-item .img img {
     height: 250px;
-    /* Maintain image height */
   }
 
   .hamburger-menu {
     cursor: pointer;
     font-size: 2rem;
     color: var(--color-primary-main);
-    /* Sesuaikan warna dengan tema Anda */
     z-index: 11;
     position: relative;
     top: 5px;
@@ -736,14 +721,13 @@ footer {
   }
 
   nav {
-  padding: 0.8rem 1rem;
+    padding: 0.8rem 1rem;
   }
 
   nav ul {
     flex-direction: column;
     position: absolute;
     top: 100%;
-    /* Posisi di bawah nav */
     left: 0;
     background-color: #fff;
     color: var(--color-primary-main);
@@ -751,30 +735,24 @@ footer {
     text-align: center;
     justify-content: space-evenly;
     height: 15px;
-    /* Tinggi awal saat tertutup */
     overflow: hidden;
-    /* Sembunyikan link */
     transition: all 0.2s ease;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   }
 
-  /* Kelas ini untuk animasi saat menu terbuka */
   nav ul.open {
     display: flex;
     padding: 10px 0;
     height: 75vh;
-    /* Tinggi akhir saat terbuka */
     animation: navbarAnimation 0.55s;
   }
 
-  /* Kelas ini untuk animasi saat menu tertutup */
   nav ul.beforeOpen {
     animation: revNavbarAnimation 0.55s;
   }
 
   nav ul a {
     display: none;
-    /* Sembunyikan link awalnya */
     color: var(--color-primary-main);
   }
 
@@ -784,7 +762,6 @@ footer {
 
   nav ul a.open {
     display: block;
-    /* Tampilkan link saat menu terbuka */
   }
 
   nav>ul>li {
@@ -799,46 +776,36 @@ footer {
 
   .footer-content {
     flex-direction: column;
-    /* Stack footer items */
     align-items: center;
-    /* Center them */
     text-align: center;
     gap: 2rem;
   }
 
   .footer-content h2 {
     margin-top: 0;
-    /* Reset */
   }
 
   .contact,
   .latest_post,
   .random_quotes {
     flex: 1 1 100%;
-    /* Take full width */
     max-width: 400px;
-    /* Constrain max width for readability */
   }
 
   .box_post {
     transform: translateX(0) translateY(0);
-    /* Reset transform */
     margin: 1rem auto;
-    /* Center with auto margins */
     max-width: 350px;
   }
 
   .box_post::before {
     display: none;
-    /* Hide the arrow on smaller screens */
   }
 
   .box_post a {
     position: static;
-    /* Allow button to flow normally */
     margin-top: 1rem;
     display: inline-block;
-    /* Make it block for full width, or inline-block for fitting content */
   }
 }
 
@@ -877,7 +844,6 @@ footer {
   .flex-item .img img,
   .head-article img {
     height: 180px;
-    /* Even smaller images */
   }
 }
 

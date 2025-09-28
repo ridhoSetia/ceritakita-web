@@ -4,10 +4,27 @@ const social_media = document.querySelector(".social-media");
 const angle_left = document.querySelector("aside > i");
 const hamburgerMenu = document.querySelector("#menu-icon");
 const navUl = document.querySelector("nav ul");
+const themeSwitcher = document.querySelector(".theme-switcher");
+const body = document.body;
+
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme) {
+    body.classList.add(savedTheme);
+}
+
+themeSwitcher.onclick = () => {
+    body.classList.toggle("dark-mode");
+
+    if (body.classList.contains("dark-mode")) {
+        localStorage.setItem("theme", "dark-mode");
+    } else {
+        localStorage.removeItem("theme");
+    }
+};
+
 
 hamburgerMenu.onclick = () => {
   hamburgerMenu.classList.toggle("bx-x");
-
   navUl.classList.toggle("open");
 
   if (!navUl.classList.contains("open")) {
