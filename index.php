@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <title>CeritaKita</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+
+</head>
+
+<body>
+  <header>
+    <div class="jumbotron">
+      <div class="text-content">
+        <h1>CERITAKITA</h1>
+        <p><mark>Berbagi Pengalaman Hidup</mark></p>
+      </div>
+    </div>
+    <nav>
+      <div class="logo">
+        <a href="index.html">
+          <img src="img/logo.png" alt="CeritaKita logo" width="100px" style="cursor: pointer" /></a>
+      </div>
+      <ul>
+        <li><a href="#tulis">Tulis Cerita</a></li>
+        <li><a href="#komunitas">Komunitas</a></li>
+        <li><a href="#kisah">Kisah Inspiratif</a></li>
+        <li><a href="#about">Tentang</a></li>
+      </ul>
+      <div class="theme-switcher">
+        <i class="fa-solid fa-sun"></i>
+        <i class="fa-solid fa-moon"></i>
+      </div>
+      <div class="bx bx-menu hamburger-menu" id="menu-icon"></div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="flex-container">
+      <div class="flex-item">
+        <div class="judul judul1">
+          <h2>Apa Itu CeritaKita?</h2>
+        </div>
+        <div class="img">
+          <img src="img/share-img.png" alt="" />
+        </div>
+        <div class="caption">
+          <p>
+            CeritaKita adalah ruang digital tempat orang berbagi pengalaman
+            hidup mereka. Mulai dari kisah perjuangan, kegagalan, keberhasilan,
+            hingga momen kecil yang berkesan.
+          </p>
+          <p>
+            Kami percaya setiap cerita memiliki makna dan dapat menjadi
+            inspirasi bagi orang lain. Yuk, bagikan kisahmu dan temukan
+            pengalaman berharga dari sesama!
+          </p>
+          <button>Tulis Cerita</button>
+        </div>
+      </div>
+      <div class="flex-item">
+        <div class="judul judul2">
+          <h2>Komunitas Cerita</h2>
+        </div>
+        <div class="img">
+          <img src="img/community-img.png" alt="" />
+        </div>
+        <div class="caption">
+          <p>
+            Bergabung dengan komunitas untuk berbagi kisah dan membaca cerita
+            dari berbagai sudut pandang kehidupan. Dari perjalanan karir,
+            pendidikan, kesehatan, hingga kisah cinta.
+          </p>
+          <button>Bergabung</button>
+        </div>
+      </div>
+      <div class="flex-item">
+        <div class="judul judul3">
+          <h2>Inspirasi Hidup</h2>
+        </div>
+        <div class="img">
+          <img src="img/inspire-img.png" alt="" />
+        </div>
+        <div class="caption">
+          <p>
+            Temukan cerita-cerita inspiratif dari orang-orang biasa yang punya
+            pengalaman luar biasa. Karena setiap langkah hidup bisa
+            menginspirasi.
+          </p>
+          <button>Selengkapnya</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="artikel" id="kisah">
+      <h1 style="margin-bottom: 10px">
+        Kisah
+        <mark>Pengalaman</mark>
+      </h1>
+      <div class="content">
+        <article>
+          <div class="head-article">
+            <h2>
+              Dari Gagal Berkali-kali Hingga Berhasil Membangun Usaha Sendiri
+            </h2>
+            <img src="img/story1.png" alt="pengalaman" />
+          </div>
+          <div class="description">
+            <p>
+              Aku pernah gagal berkali-kali, bahkan hampir menyerah. Namun,
+              dari setiap kegagalan aku belajar dan akhirnya bisa bangkit
+              membangun usaha kecil yang kini berkembang.
+            </p>
+            <br />
+            <a href="#selengkapnya"><b>Selengkapnya <i class="fa-solid fa-arrow-right"></i></b></a>
+          </div>
+        </article>
+        <article>
+          <div class="head-article">
+            <h2>
+              Perjalanan Meninggalkan Zona Nyaman dan Menemukan Passion
+            </h2>
+            <img src="img/story2.png" alt="pengalaman" />
+          </div>
+          <div class="description">
+            <p>
+              Kadang kita terlalu nyaman hingga lupa siapa diri kita
+              sebenarnya. Aku memilih keluar dari zona nyaman dan akhirnya
+              menemukan passion sejati.
+            </p>
+            <br />
+            <a href="#selengkapnya"><b>Selengkapnya <i class="fa-solid fa-arrow-right"></i></b></a>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <aside>
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="social-media">
+        <ul>
+          <li>
+            <a href="#instagram"><i class="fa-brands fa-instagram"></i></a>
+          </li>
+          <li>
+            <a href="#twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          </li>
+          <li>
+            <a href="#facebook"><i class="fa-brands fa-facebook"></i></a>
+          </li>
+          <li>
+            <a href="#youtube"><i class="fa-brands fa-youtube"></i></a>
+          </li>
+          <li>
+            <a href="#linkedin"><i class="fa-brands fa-linkedin"></i></a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="latest_post">
+        <h2>Cerita Terbaru</h2>
+        <div class="box_post">
+          <p>@pengguna</p>
+          <a href="#cerita"><i class="fa-solid fa-eye"></i> Baca</a>
+        </div>
+      </div>
+      <div class="contact">
+        <h2>Kontak</h2>
+        <ul>
+          <li>
+            <i class="fa-brands fa-whatsapp"></i>
+            <a href="#whatsapp"> WhatsApp</a>
+          </li>
+          <li>
+            <i class="fa-regular fa-envelope"></i>
+            <a href="#email">Email</a>
+          </li>
+        </ul>
+      </div>
+      <div class="random_quotes">
+        <h2>Quotes Inspiratif</h2>
+        <i>
+          <p id="quote"></p>
+        </i>
+        <h3 id="author"></h3>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>
+        &copy; 2025 CeritaKita. All rights reserved. |
+        <a href="#privacy-policy">Privacy Policy</a> |
+        <a href="#terms-conditions">Terms & Conditions</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
