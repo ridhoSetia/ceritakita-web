@@ -1,0 +1,97 @@
+/* Body styling for auth pages */
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Container for Login and Dashboard */
+.auth-container {
+  max-width: 450px;
+  width: 100%;
+  padding: 2.5rem;
+  background-color: rgba(255, 255, 255, 0.95); /* Sedikit transparan */
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--color-primary-light);
+}
+
+.auth-container.dark-mode {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
+  box-shadow: 0 10px 25px -5px rgba(255, 255, 255, 0.2);
+}
+
+.auth-container.dark-mode > h2 {
+  color: var(--dark-text);
+}
+
+.auth-container h2 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin-bottom: 2rem;
+}
+
+/* Form styling */
+.auth-form input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1.2rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  font-family: "Outfit", sans-serif;
+  font-size: 1rem;
+  box-sizing: border-box; /* Menambahkan box-sizing */
+}
+
+.auth-form.dark-mode input {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
+}
+
+
+.auth-form input:focus {
+  outline: none;
+  border-color: var(--color-primary-main);
+  box-shadow: 0 0 0 3px rgba(255, 171, 64, 0.3);
+}
+
+.auth-form button {
+  width: 100%;
+  border: none;
+  background-color: var(--color-primary-main);
+  color: var(--color-text-light);
+  font-size: 1.1rem;
+  font-weight: 600; /* Membuat teks lebih tebal */
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.auth-form button:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-2px);
+}
+
+.error-message {
+  color: #d8000c;
+  background-color: #ffd2d2;
+  border: 1px solid #d8000c;
+  padding: 0.8rem;
+  text-align: center;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+}

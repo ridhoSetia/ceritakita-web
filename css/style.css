@@ -27,7 +27,6 @@ body {
   font-weight: 400;
   font-style: normal;
   background-color: #f8f8f8;
-  /* Light gray background */
 }
 
 button {
@@ -40,7 +39,7 @@ button {
 
 header {
   height: 100vh;
-  background-image: url(img/main-image.png);
+  background-image: url(../img/main-image.png);
   background-size: cover;
   background-position: top;
   position: relative;

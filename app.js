@@ -1,27 +1,36 @@
 const nav = document.querySelector("nav");
 const navLinks = document.querySelectorAll("nav ul a");
 const social_media = document.querySelector(".social-media");
-const angle_left = document.querySelector("aside > i");
 const hamburgerMenu = document.querySelector("#menu-icon");
 const navUl = document.querySelector("nav ul");
 const themeSwitcher = document.querySelector(".theme-switcher");
 const body = document.body;
+const authContainer = document.querySelector(".auth-container");
+const authForm = document.querySelector(".auth-form");
 
+// At the top of your file
 const savedTheme = localStorage.getItem("theme");
-if (savedTheme) {
-    body.classList.add(savedTheme);
+if (savedTheme === "dark-mode") {
+  body.classList.add("dark-mode");
+  // Also apply theme to other elements if they exist
+  if (authContainer) authContainer.classList.add("dark-mode");
+  if (authForm) authForm.classList.add("dark-mode");
 }
 
+// Your theme switcher function
 themeSwitcher.onclick = () => {
-    body.classList.toggle("dark-mode");
+  // Toggle the class on all relevant elements
+  body.classList.toggle("dark-mode");
+  if (authContainer) authContainer.classList.toggle("dark-mode");
+  if (authForm) authForm.classList.toggle("dark-mode");
 
-    if (body.classList.contains("dark-mode")) {
-        localStorage.setItem("theme", "dark-mode");
-    } else {
-        localStorage.removeItem("theme");
-    }
+  // Save or remove the single theme key from localStorage
+  if (body.classList.contains("dark-mode")) {
+    localStorage.setItem("theme", "dark-mode");
+  } else {
+    localStorage.removeItem("theme");
+  }
 };
-
 
 hamburgerMenu.onclick = () => {
   hamburgerMenu.classList.toggle("bx-x");
@@ -47,7 +56,7 @@ hamburgerMenu.onclick = () => {
   }, 100);
 };
 
-window.addEventListener('scroll', () => {
+window.addEventListener("scroll", () => {
   if (navUl.classList.contains("open")) {
     hamburgerMenu.classList.remove("bx-x");
     navUl.classList.remove("open");
@@ -63,13 +72,6 @@ window.addEventListener('scroll', () => {
   }
 });
 
-angle_left.onclick = () => {
-  social_media.classList.toggle("active");
-  angle_left.classList.toggle("fa-angle-left");
-  angle_left.classList.toggle("fa-angle-right");
-  angle_left.classList.toggle("active");
-};
-
 const quote = document.querySelector("#quote");
 const author = document.querySelector("#author");
 const url = "https://api.quotable.io/random";
@@ -83,7 +85,7 @@ const getQuote = () => {
         author.innerText = item.author;
       }
     })
-    .catch(error => {
+    .catch((error) => {
       console.error("Could not fetch quote:", error);
       if (quote) {
         quote.innerText = "The best way to predict the future is to create it.";
