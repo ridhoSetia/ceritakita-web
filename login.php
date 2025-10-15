@@ -2,6 +2,8 @@
 session_start();
 require 'helpers.php';
 
+$themeClass = isset($_COOKIE['theme']) && $_COOKIE['theme'] === 'dark-mode' ? 'dark-mode' : '';
+
 if (isset($_SESSION['username'])) {
     header('Location: dashboard.php');
     exit;
@@ -27,5 +29,5 @@ $data = [
     'error' => $error
 ];
 
-// Render view 'login' menggunakan layout 'auth'
-render('login', $data, 'auth');
+// Render view 'login' menggunakan layout 'app'
+render('login', $data, 'app');

@@ -1,39 +1,142 @@
+/* Styling untuk Dashboard Container Utama */
+.dashboard-container {
+    background-color: #f8f9fa;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    margin: 2rem auto;
+    max-width: 900px;
+    color: #333;
+    transition: all 0.3s ease;
+}
 
-/* Dashboard specific styles */
+body.dark-mode .dashboard-container {
+    background-color: #2c3e50;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    color: #ecf0f1;
+}
+
+.dashboard-container h2 {
+    font-size: 2rem;
+    margin-bottom: 8px;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.dashboard-container h3 {
+    font-size: 1.5rem;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    color: #34495e;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+
+body.dark-mode .dashboard-container h2,
+body.dark-mode .dashboard-container h3 {
+    color: #ffffff;
+    border-bottom-color: #4a627a;
+}
+
 .dashboard-container p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: #444;
-  margin-bottom: 1rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
 }
 
 .dashboard-container .username {
-  font-weight: 700;
-  color: var(--color-primary-dark);
+    font-weight: 700;
+    color: #27ae60; /* Warna highlight username diubah ke hijau */
 }
 
-.dashboard-container .logout-link {
-  display: inline-block;
-  text-align: center;
-  width: 100%;
-  text-decoration: none;
-  margin-top: 1.5rem;
-  border: none;
-  background-color: var(--color-accent);
-  color: var(--color-text-light);
-  font-size: 1.1rem;
-  font-weight: 600;
-  padding: 0.8rem 1.5rem;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+/* Styling untuk Tombol Tambah Cerita */
+.button-tambah {
+    display: inline-block;
+    background-color: #27ae60; /* Warna tombol diubah ke hijau */
+    color: #ffffff;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 25px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    /* Warna bayangan diubah ke hijau */
+    box-shadow: 0 2px 8px rgba(39, 174, 96, 0.3);
 }
 
-.dashboard-container .logout-link:hover {
-  background-color: #555;
-  transform: translateY(-2px);
+.button-tambah:hover {
+    background-color: #229954; /* Warna hover diubah ke hijau lebih gelap */
+    transform: translateY(-2px);
 }
 
-.auth-container.dark-mode p {
-  color: var(--dark-text);
+/* Styling untuk Tabel Cerita */
+.table-cerita {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 1rem;
+}
+
+.table-cerita thead {
+    background-color: #e9ecef;
+}
+
+body.dark-mode .table-cerita thead {
+    background-color: #34495e;
+}
+
+.table-cerita th,
+.table-cerita td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+body.dark-mode .table-cerita th,
+body.dark-mode .table-cerita td {
+    border-bottom-color: #4a627a;
+}
+
+.table-cerita th {
+    font-weight: 600;
+    color: #495057;
+}
+
+body.dark-mode .table-cerita th {
+    color: #ecf0f1;
+}
+
+.table-cerita tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.table-cerita tbody tr:hover {
+    background-color: #f1f3f5;
+}
+
+body.dark-mode .table-cerita tbody tr:hover {
+    background-color: #3b526a;
+}
+
+/* Styling untuk Tombol Aksi (Edit & Hapus) */
+.btn-edit, .btn-hapus {
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: opacity 0.3s ease;
+    margin-right: 5px;
+}
+
+.btn-edit {
+    background-color: #f39c12; /* Diubah jadi kuning agar kontras dengan tombol utama */
+}
+
+.btn-hapus {
+    background-color: #e74c3c; /* Merah */
+}
+
+.btn-edit:hover, .btn-hapus:hover {
+    opacity: 0.8;
 }

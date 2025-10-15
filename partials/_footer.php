@@ -1,36 +1,23 @@
 <footer>
     <div class="footer-content">
-      <div class="latest_post">
-        <h2>Cerita Terbaru</h2>
-        <div class="box_post">
-          <p>@pengguna</p>
-          <a href="#cerita"><i class="fa-solid fa-eye"></i> Baca</a>
+        <div class="footer-section">
+            <h3>Tentang CeritaKita</h3>
+            <p>Platform untuk berbagi pengalaman hidup, menemukan inspirasi, dan terhubung dengan komunitas yang suportif.</p>
         </div>
-      </div>
-      <div class="contact">
-        <h2>Kontak</h2>
-        <ul>
-          <li>
-            <i class="fa-brands fa-whatsapp"></i>
-            <a href="#whatsapp"> WhatsApp</a>
-          </li>
-          <li>
-            <i class="fa-regular fa-envelope"></i>
-            <a href="#email">Email</a>
-          </li>
-        </ul>
-      </div>
-      <div class="random_quotes">
-        <h2>Quotes Inspiratif</h2>
-        <i><p id="quote"></p></i>
-        <h3 id="author"></h3>
-      </div>
+        <div class="footer-section">
+            <h3>Kontak</h3>
+            <ul>
+                <li><a href="mailto:info@ceritakita.com">Email: info@ceritakita.com</a></li>
+                <li><a href="#">WhatsApp: +62 123 4567 890</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Quotes Inspiratif</h3>
+            <p id="quote">Memuat kutipan...</p>
+            <strong id="author"></strong>
+        </div>
     </div>
     <div class="copyright">
-      <p>
-        &copy; 2025 CeritaKita. All rights reserved. |
-        <a href="#privacy-policy">Privacy Policy</a> |
-        <a href="#terms-conditions">Terms & Conditions</a>
-      </p>
+        <p>&copy; 2025 CeritaKita. All rights reserved.</p>
     </div>
 </footer>

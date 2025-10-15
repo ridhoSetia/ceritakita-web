@@ -1,121 +1,48 @@
-<div class="flex-container">
-  <div class="flex-item">
-    <div class="judul judul1">
-      <h2>Apa Itu CeritaKita?</h2>
+<section class="section" id="fitur">
+    <div class="section-title">
+        <h2>Ruang Digital Untuk Setiap Cerita</h2>
+        <p>Kami percaya setiap pengalaman berharga. Temukan fitur yang membantumu berbagi dan terhubung.</p>
     </div>
-    <div class="img">
-      <img src="img/share-img.png" alt="" />
+    <div class="features-grid">
+        <div class="feature-card">
+            <img src="img/share-img.png" alt="Tulis dan Bagikan Cerita" />
+            <h3>Tulis & Bagikan</h3>
+            <p>Bagikan kisah perjuangan, keberhasilan, hingga momen kecil yang berkesan dengan mudah.</p>
+        </div>
+        <div class="feature-card">
+            <img src="img/community-img.png" alt="Komunitas Suportif" />
+            <h3>Komunitas Suportif</h3>
+            <p>Terhubung dengan pembaca dan penulis lain dalam komunitas yang positif dan saling mendukung.</p>
+        </div>
+        <div class="feature-card">
+            <img src="img/inspire-img.png" alt="Sumber Inspirasi" />
+            <h3>Sumber Inspirasi</h3>
+            <p>Temukan cerita inspiratif dari orang-orang dengan berbagai latar belakang dari seluruh dunia.</p>
+        </div>
     </div>
-    <div class="caption">
-      <p>
-        CeritaKita adalah ruang digital tempat orang berbagi pengalaman
-        hidup mereka. Mulai dari kisah perjuangan, kegagalan, keberhasilan,
-        hingga momen kecil yang berkesan.
-      </p>
-      <p>
-        Kami percaya setiap cerita memiliki makna dan dapat menjadi
-        inspirasi bagi orang lain. Yuk, bagikan kisahmu dan temukan
-        pengalaman berharga dari sesama!
-      </p>
-      <button>Tulis Cerita</button>
-    </div>
-  </div>
-  <div class="flex-item">
-    <div class="judul judul2">
-      <h2>Komunitas Cerita</h2>
-    </div>
-    <div class="img">
-      <img src="img/community-img.png" alt="" />
-    </div>
-    <div class="caption">
-      <p>
-        Bergabung dengan komunitas untuk berbagi kisah dan membaca cerita
-        dari berbagai sudut pandang kehidupan. Dari perjalanan karir,
-        pendidikan, kesehatan, hingga kisah cinta.
-      </p>
-      <button>Bergabung</button>
-    </div>
-  </div>
-  <div class="flex-item">
-    <div class="judul judul3">
-      <h2>Inspirasi Hidup</h2>
-    </div>
-    <div class="img">
-      <img src="img/inspire-img.png" alt="" />
-    </div>
-    <div class="caption">
-      <p>
-        Temukan cerita-cerita inspiratif dari orang-orang biasa yang punya
-        pengalaman luar biasa. Karena setiap langkah hidup bisa
-        menginspirasi.
-      </p>
-      <button>Selengkapnya</button>
-    </div>
-  </div>
-</div>
+</section>
 
-<div class="artikel" id="kisah">
-  <h1 style="margin-bottom: 10px">
-    Kisah
-    <mark>Pengalaman</mark>
-  </h1>
-  <div class="content">
-    <article>
-      <div class="head-article">
-        <h2>
-          Dari Gagal Berkali-kali Hingga Berhasil Membangun Usaha Sendiri
-        </h2>
-        <img src="img/story1.png" alt="pengalaman" />
-      </div>
-      <div class="description">
-        <p>
-          Aku pernah gagal berkali-kali, bahkan hampir menyerah. Namun,
-          dari setiap kegagalan aku belajar dan akhirnya bisa bangkit
-          membangun usaha kecil yang kini berkembang.
-        </p>
-        <br />
-        <a href="#selengkapnya"><b>Selengkapnya <i class="fa-solid fa-arrow-right"></i></b></a>
-      </div>
-    </article>
-    <article>
-      <div class="head-article">
-        <h2>
-          Perjalanan Meninggalkan Zona Nyaman dan Menemukan Passion
-        </h2>
-        <img src="img/story2.png" alt="pengalaman" />
-      </div>
-      <div class="description">
-        <p>
-          Kadang kita terlalu nyaman hingga lupa siapa diri kita
-          sebenarnya. Aku memilih keluar dari zona nyaman dan akhirnya
-          menemukan passion sejati.
-        </p>
-        <br />
-        <a href="#selengkapnya"><b>Selengkapnya <i class="fa-solid fa-arrow-right"></i></b></a>
-      </div>
-    </article>
-  </div>
-</div>
-
-<aside>
-  <i class="fa-solid fa-angle-left"></i>
-  <div class="social-media">
-    <ul>
-      <li>
-        <a href="#instagram"><i class="fa-brands fa-instagram"></i></a>
-      </li>
-      <li>
-        <a href="#twitter"><i class="fa-brands fa-x-twitter"></i></a>
-      </li>
-      <li>
-        <a href="#facebook"><i class="fa-brands fa-facebook"></i></a>
-      </li>
-      <li>
-        <a href="#youtube"><i class="fa-brands fa-youtube"></i></a>
-      </li>
-      <li>
-        <a href="#linkedin"><i class="fa-brands fa-linkedin"></i></a>
-      </li>
-    </ul>
-  </div>
-</aside>
+<section class="section" id="kisah">
+    <div class="section-title">
+        <h2>Kisah Pengalaman Penuh Makna</h2>
+        <p>Jelajahi cerita-cerita pilihan yang akan menyentuh hatimu dan memberimu sudut pandang baru.</p>
+    </div>
+    <div class="stories-grid">
+        <article class="story-card">
+            <img src="img/story1.png" alt="Kisah membangun usaha" />
+            <div class="story-content">
+                <h3>Dari Gagal Berkali-kali Hingga Sukses Membangun Usaha</h3>
+                <p>Aku pernah hampir menyerah. Namun, dari setiap kegagalan aku belajar dan akhirnya bisa bangkit membangun usaha impianku.</p>
+                <a href="#" class="read-more-link">Baca Selengkapnya &rarr;</a>
+            </div>
+        </article>
+        <article class="story-card">
+            <img src="img/story2.png" alt="Kisah menemukan passion" />
+            <div class="story-content">
+                <h3>Meninggalkan Zona Nyaman dan Menemukan Passion Sejati</h3>
+                <p>Terkadang kita terlalu nyaman hingga lupa siapa diri kita. Aku memilih keluar dan petualangan itu mengubah hidupku.</p>
+                <a href="#" class="read-more-link">Baca Selengkapnya &rarr;</a>
+            </div>
+        </article>
+    </div>
+</section>
