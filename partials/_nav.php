@@ -1,12 +1,11 @@
 <nav>
     <div class="logo">
-        <a href="index.php">
-            <img src="img/logo.png" alt="CeritaKita logo" />
+        <a href="/">
+            <h2 style="color: #27ae60; text-decoration: underline;">CeritaKita</h2>
         </a>
     </div>
     <ul>
-        <li><a href="index.php#fitur">Fitur</a></li>
-        <li><a href="index.php#kisah">Kisah Inspiratif</a></li>
+        <li><a href="cerita.php">Kumpulan Cerita</a></li> 
         <?php if ($isLoggedIn ?? false): ?>
             <li><a href="dashboard.php">Dashboard</a></li>
             <li><a href="logout.php">Logout</a></li>

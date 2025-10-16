@@ -7,8 +7,7 @@
         <div class="footer-section">
             <h3>Kontak</h3>
             <ul>
-                <li><a href="mailto:info@ceritakita.com">Email: info@ceritakita.com</a></li>
-                <li><a href="#">WhatsApp: +62 123 4567 890</a></li>
+                <li><a href="mailto:ridho.setiawan24406@gmail.com">@Email</a></li>
             </ul>
         </div>
         <div class="footer-section">

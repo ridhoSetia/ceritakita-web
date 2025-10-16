@@ -1,33 +1,57 @@
 <?php
 session_start();
 require 'helpers.php';
+require 'koneksi.php';
 
-$themeClass = isset($_COOKIE['theme']) && $_COOKIE['theme'] === 'dark-mode' ? 'dark-mode' : '';
-
-if (isset($_SESSION['username'])) {
+// Jika sudah login, redirect ke dashboard
+if (isset($_SESSION['user_id'])) {
     header('Location: dashboard.php');
     exit;
 }
 
 $error = '';
+$success_message = '';
+
+if (isset($_GET['status']) && $_GET['status'] == 'registered') {
+    $success_message = 'Registrasi berhasil! Silakan login.';
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
     if (!empty($username) && !empty($password)) {
-        $_SESSION['username'] = $username;
-        header('Location: dashboard.php');
-        exit;
+        // Ambil data user dari database
+        $stmt = $conn->prepare("SELECT id, username, password FROM users WHERE username = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($user = $result->fetch_assoc()) {
+            // Verifikasi password
+            if (password_verify($password, $user['password'])) {
+                // Login berhasil
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['username'] = $user['username'];
+                header('Location: dashboard.php');
+                exit;
+            } else {
+                $error = 'Username atau password salah!';
+            }
+        } else {
+            $error = 'Username atau password salah!';
+        }
+        $stmt->close();
     } else {
         $error = 'Username dan password tidak boleh kosong!';
     }
 }
 
-// Data untuk view
 $data = [
     'title' => 'Login - CeritaKita',
-    'error' => $error
+    'error' => $error,
+    'success_message' => $success_message
 ];
 
-// Render view 'login' menggunakan layout 'app'
 render('login', $data, 'app');
+?>

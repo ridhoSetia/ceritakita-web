@@ -5,17 +5,11 @@ main {
     align-items: center;
 }
 
-/* Latar Belakang untuk Halaman Autentikasi (Login/Register) */
+/* --- Light Mode Styles --- */
 body.auth-page {
-    /* Gradien diubah ke nuansa hijau lembut */
     background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
 }
 
-body.auth-page.dark-mode {
-    background: linear-gradient(135deg, #2d3a32 0%, #1a251d 100%);
-}
-
-/* Container Form Login */
 .auth-container {
     max-width: 420px;
     width: 100%;
@@ -27,11 +21,6 @@ body.auth-page.dark-mode {
     transition: all 0.3s ease;
 }
 
-body.dark-mode .auth-container {
-    background-color: #2c3e50;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
-}
-
 .auth-container h2 {
     font-size: 2.2rem;
     font-weight: 700;
@@ -39,11 +28,6 @@ body.dark-mode .auth-container {
     color: #34495e;
 }
 
-body.dark-mode .auth-container h2 {
-    color: #ffffff;
-}
-
-/* Styling untuk Form */
 .auth-form {
     display: flex;
     flex-direction: column;
@@ -61,43 +45,56 @@ body.dark-mode .auth-container h2 {
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-body.dark-mode .auth-form input {
-    background-color: #34495e;
-    border-color: #5d6d7e;
-    color: #ecf0f1;
-}
-
 .auth-form input::placeholder {
     color: #b2bec3;
 }
 
-body.dark-mode .auth-form input::placeholder {
-    color: #95a5a6;
-}
-
 .auth-form input:focus {
     outline: none;
-    border-color: #27ae60; /* Warna border diubah ke hijau */
-    /* Warna box-shadow diubah ke hijau */
+    border-color: #27ae60;
     box-shadow: 0 0 0 4px rgba(39, 174, 96, 0.2);
 }
 
-/* Styling untuk Tombol Login */
 .auth-form button {
     padding: 16px;
     font-size: 1.1rem;
     font-weight: 600;
     color: #ffffff;
-    background-color: #27ae60; /* Warna tombol utama diubah ke hijau */
+    background-color: #27ae60;
     border: none;
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    /* Warna bayangan tombol diubah ke hijau */
     box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
 }
 
 .auth-form button:hover {
-    background-color: #229954; /* Warna hover diubah ke hijau lebih gelap */
+    background-color: #229954;
     transform: translateY(-3px);
+}
+
+/* --- Dark Mode Styles (Charcoal Theme) --- */
+body.auth-page.dark-mode {
+    background-color: #121212; /* Warna dasar arang */
+    background-image: none; /* Hapus gradien di dark mode */
+}
+
+body.dark-mode .auth-container {
+    background-color: #1e1e1e;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+    border: 1px solid #2d2d2d;
+}
+
+body.dark-mode .auth-container h2 {
+    color: #ffffff;
+}
+
+body.dark-mode .auth-form input {
+    background-color: #2a2a2a;
+    border-color: #333333;
+    color: #ecf0f1;
+}
+
+body.dark-mode .auth-form input::placeholder {
+    color: #777;
 }
