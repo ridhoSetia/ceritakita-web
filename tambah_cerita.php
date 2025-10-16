@@ -5,7 +5,6 @@ require 'koneksi.php';
 
 // Cek jika pengguna sudah login
 if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php');
     exit;
 }
 
@@ -49,9 +48,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Perbarui query INSERT untuk menyertakan isi
             $stmt = $conn->prepare("INSERT INTO cerita (judul, penulis, isi, user_id, gambar) VALUES (?, ?, ?, ?, ?)");
             $stmt->bind_param("sssis", $judul, $penulis, $isi, $user_id, $gambar_path);
-            
+
             if ($stmt->execute()) {
-                header('Location: dashboard.php?status=added');
+                $_SESSION['flash_message'] = ['type' => 'success', 'message' => 'Cerita baru berhasil dipublikasikan!'];
+                header('Location: dashboard.php');
                 exit;
             } else {
                 $error = 'Gagal menyimpan cerita.';

@@ -27,41 +27,102 @@ document.addEventListener("DOMContentLoaded", () => {
     if (savedTheme === "dark-mode") {
         body.classList.add("dark-mode");
     }
-
     if (themeSwitcher) {
         themeSwitcher.onclick = () => {
             body.classList.toggle("dark-mode");
-            if (body.classList.contains("dark-mode")) {
-                localStorage.setItem("theme", "dark-mode");
-            } else {
-                localStorage.removeItem("theme");
-            }
+            localStorage.setItem("theme", body.classList.contains("dark-mode") ? "dark-mode" : "");
         };
     }
 
-    // Fetch random quote for the footer
+    // --- LOGIKA MODAL POP-UP ---
+
+    // 1. Modal Notifikasi (Untuk pesan sukses/error)
+    const notificationModal = document.getElementById('notification-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalMessage = document.getElementById('modal-message');
+    const modalCloseBtn = document.getElementById('modal-close-btn');
+
+    function showNotificationModal(title, message, type = 'success') {
+        if (!notificationModal) return;
+        modalTitle.textContent = title;
+        modalMessage.textContent = message;
+        modalTitle.style.color = type === 'error' ? '#e74c3c' : '#27ae60';
+        notificationModal.style.display = 'flex';
+        setTimeout(() => notificationModal.classList.add('show'), 10);
+    }
+
+    function hideNotificationModal() {
+        if (!notificationModal) return;
+        notificationModal.classList.remove('show');
+        setTimeout(() => notificationModal.style.display = 'none', 300);
+    }
+
+    if (modalCloseBtn) {
+        modalCloseBtn.onclick = hideNotificationModal;
+    }
+    
+    // Cek flash message dari PHP dan tampilkan modal
+    const flashMessageData = document.body.dataset.flashMessage;
+    if (flashMessageData) {
+        try {
+            const flash = JSON.parse(flashMessageData);
+            const title = flash.type === 'success' ? 'Berhasil!' : 'Terjadi Kesalahan';
+            showNotificationModal(title, flash.message, flash.type);
+        } catch (e) {
+            console.error("Gagal parsing flash message:", e);
+        }
+    }
+
+    // 2. Modal Konfirmasi (Untuk hapus cerita)
+    const confirmationModal = document.getElementById('confirmation-modal');
+    const confirmDeleteLink = document.getElementById('confirm-delete-btn');
+    const confirmCancelBtn = document.getElementById('confirm-cancel-btn');
+    const allDeleteLinks = document.querySelectorAll('a[data-delete-url]');
+
+    function showConfirmationModal(deleteUrl) {
+        if (!confirmationModal || !confirmDeleteLink) return;
+        confirmDeleteLink.href = deleteUrl;
+        confirmationModal.style.display = 'flex';
+        setTimeout(() => confirmationModal.classList.add('show'), 10);
+    }
+    
+    function hideConfirmationModal() {
+        if (!confirmationModal) return;
+        confirmationModal.classList.remove('show');
+        setTimeout(() => confirmationModal.style.display = 'none', 300);
+    }
+
+    allDeleteLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const url = link.dataset.deleteUrl;
+            showConfirmationModal(url);
+        });
+    });
+
+    if (confirmCancelBtn) {
+        confirmCancelBtn.onclick = hideConfirmationModal;
+    }
+    
+    // Sembunyikan modal jika klik di luar area konten
+    window.addEventListener('click', (e) => {
+        if (e.target === notificationModal) hideNotificationModal();
+        if (e.target === confirmationModal) hideConfirmationModal();
+    });
+
+    // --- Logika Quote (Tetap Sama) ---
     const quoteEl = document.querySelector("#quote");
     const authorEl = document.querySelector("#author");
-    const quoteUrl = "https://api.quotable.io/random";
-
-    const getQuote = () => {
-        fetch(quoteUrl)
-            .then((response) => response.json())
+    if (quoteEl && authorEl) {
+        fetch("https://api.quotable.io/random")
+            .then((res) => res.json())
             .then((data) => {
-                if (quoteEl && authorEl) {
-                    quoteEl.innerText = `"${data.content}"`;
-                    authorEl.innerText = `— ${data.author}`;
-                }
+                quoteEl.innerText = `"${data.content}"`;
+                authorEl.innerText = `— ${data.author}`;
             })
             .catch(() => {
-                if (quoteEl && authorEl) {
-                    quoteEl.innerText = '"The best way to predict the future is to create it."';
-                    authorEl.innerText = "— Peter Drucker";
-                }
+                quoteEl.innerText = '"The best way to predict the future is to create it."';
+                authorEl.innerText = "— Peter Drucker";
             });
-    };
-
-    if (quoteEl && authorEl) {
-        getQuote();
     }
 });

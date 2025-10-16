@@ -27,7 +27,8 @@
                         <td data-label="Penulis"><?php echo htmlspecialchars($row['penulis']); ?></td>
                         <td data-label="Aksi">
                             <a href="edit_cerita.php?id=<?php echo $row['id']; ?>" class="btn-edit">Edit</a>
-                            <a href="hapus_cerita.php?id=<?php echo $row['id']; ?>" class="btn-hapus" onclick="return confirm('Apakah Anda yakin ingin menghapus cerita ini?');">Hapus</a>
+                            <a href="#" data-delete-url="hapus_cerita.php?id=<?php echo $row['id']; ?>"
+                                class="btn-hapus confirm-delete-btn">Hapus</a>
                         </td>
                     </tr>
                 <?php endwhile; ?>

@@ -34,10 +34,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Simpan pengguna baru ke database
             $stmt_insert = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
             $stmt_insert->bind_param("ss", $username, $password_hash);
-            
+
             if ($stmt_insert->execute()) {
                 // Redirect ke halaman login setelah berhasil
-                header('Location: login.php?status=registered');
+                $_SESSION['flash_message'] = ['type' => 'success', 'message' => 'Registrasi berhasil! Silakan login.'];
+                header('Location: login.php');
                 exit;
             } else {
                 $error = 'Terjadi kesalahan, silakan coba lagi.';

@@ -7,48 +7,27 @@
     <title><?php echo htmlspecialchars($title ?? 'CeritaKita'); ?></title>
     <link rel="stylesheet" href="./css/style.css">
     <?php
-    // Definisikan grup halaman dengan judul-judulnya
-    $auth_pages = [
-        "Login - CeritaKita",
-        "Register - CeritaKita"
-    ];
+    // Definisikan grup halaman
+    $auth_pages = ["Login - CeritaKita", "Register - CeritaKita"];
+    $dashboard_pages = ["Dashboard - CeritaKita", "Tulis Cerita Baru - CeritaKita", "Edit Cerita - CeritaKita"];
+    $story_pages = ["Kumpulan Cerita - CeritaKita"];
 
-    $dashboard_pages = [
-        "Dashboard - CeritaKita",
-        "Tulis Cerita Baru - CeritaKita",
-        "Edit Cerita - CeritaKita"
-    ];
-
-    $story_pages = [
-        "Kumpulan Cerita - CeritaKita"
-    ];
-
-    // --- Logika Pemuatan CSS ---
-    
-    // Muat login.css jika judul halaman ada di dalam grup autentikasi
+    // Muat CSS berdasarkan grupnya
     if (in_array($title, $auth_pages)) {
         echo '<link rel="stylesheet" href="./css/login.css">';
     }
-
-    // Muat dashboard.css jika judul halaman ada di dalam grup dashboard
     if (in_array($title, $dashboard_pages)) {
         echo '<link rel="stylesheet" href="./css/dashboard.css">';
     }
-
-    // Muat cerita.css jika judul halaman ada di grup cerita,
-    // atau jika BUKAN halaman auth, BUKAN halaman dashboard, dan BUKAN halaman utama.
-    // Ini akan secara efektif mencakup halaman detail cerita.
     if (in_array($title, $story_pages) || (!in_array($title, $auth_pages) && !in_array($title, $dashboard_pages) && $title != "CeritaKita - Berbagi Pengalaman Hidup")) {
         echo '<link rel="stylesheet" href="./css/cerita.css">';
     }
     ?>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 </head>
 
-<body>
+<body <?php if (isset($flash_message)): ?> data-flash-message='<?php echo json_encode($flash_message); ?>' <?php endif; ?>>
 
     <?php include __DIR__ . '/../partials/_nav.php'; ?>
 
@@ -64,7 +43,25 @@
 
     <?php include __DIR__ . '/../partials/_footer.php'; ?>
 
+    <div id="notification-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <h3 id="modal-title"></h3>
+            <p id="modal-message"></p>
+            <button id="modal-close-btn" class="modal-button">Tutup</button>
+        </div>
+    </div>
+
+    <div id="confirmation-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <h3>Konfirmasi Hapus</h3>
+            <p>Apakah Anda yakin ingin menghapus cerita ini? Tindakan ini tidak dapat dibatalkan.</p>
+            <div class="modal-button-group">
+                <button id="confirm-cancel-btn" class="modal-button secondary">Batal</button>
+                <a href="#" id="confirm-delete-btn" class="modal-button danger">Ya, Hapus</a>
+            </div>
+        </div>
+    </div>
+
     <script src="app.js"></script>
 </body>
-
 </html>

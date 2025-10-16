@@ -9,12 +9,17 @@
  */
 function render(string $view, array $data = [], string $layout = 'app')
 {
-    // Cek jika user sudah login untuk menampilkan data di navbar
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
-    $data['isLoggedIn'] = isset($_SESSION['username']);
+    $data['isLoggedIn'] = isset($_SESSION['user_id']);
     $data['username'] = $_SESSION['username'] ?? '';
+
+    // Ambil flash message jika ada, lalu hapus
+    if (isset($_SESSION['flash_message'])) {
+        $data['flash_message'] = $_SESSION['flash_message'];
+        unset($_SESSION['flash_message']);
+    }
 
     extract($data);
 

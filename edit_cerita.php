@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $judul = trim($_POST['judul']);
     $penulis = trim($_POST['penulis']);
     $isi = trim($_POST['isi']);
-    
+
     if (empty($judul) || empty($penulis) || empty($isi)) {
         $error = 'Judul, Penulis, dan Isi Cerita tidak boleh kosong!';
     } else {
@@ -48,12 +48,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $upload_dir = 'uploads/';
             $file_name = time() . '_' . basename($_FILES['gambar']['name']);
             $target_file = $upload_dir . $file_name;
-            
+
             // Hapus gambar lama jika ada
             if ($cerita['gambar'] && file_exists($cerita['gambar'])) {
                 unlink($cerita['gambar']);
             }
-            
+
             // Pindahkan gambar baru
             if (move_uploaded_file($_FILES['gambar']['tmp_name'], $target_file)) {
                 $gambar_path = $target_file;
@@ -66,9 +66,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Update data di database
             $stmt_update = $conn->prepare("UPDATE cerita SET judul = ?, penulis = ?, isi = ?, gambar = ? WHERE id = ? AND user_id = ?");
             $stmt_update->bind_param("ssssii", $judul, $penulis, $isi, $gambar_path, $id, $user_id);
-            
+
             if ($stmt_update->execute()) {
-                header('Location: dashboard.php?status=updated');
+                $_SESSION['flash_message'] = ['type' => 'success', 'message' => 'Cerita berhasil diperbarui!'];
+                header('Location: dashboard.php');
                 exit;
             } else {
                 $error = 'Gagal memperbarui cerita.';

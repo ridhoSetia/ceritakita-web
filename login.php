@@ -9,49 +9,53 @@ if (isset($_SESSION['user_id'])) {
     exit;
 }
 
-$error = '';
-$success_message = '';
-
-if (isset($_GET['status']) && $_GET['status'] == 'registered') {
-    $success_message = 'Registrasi berhasil! Silakan login.';
-}
-
+// Logika ini hanya berjalan saat form disubmit
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    if (!empty($username) && !empty($password)) {
-        // Ambil data user dari database
-        $stmt = $conn->prepare("SELECT id, username, password FROM users WHERE username = ?");
-        $stmt->bind_param("s", $username);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        
-        if ($user = $result->fetch_assoc()) {
-            // Verifikasi password
-            if (password_verify($password, $user['password'])) {
-                // Login berhasil
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['username'] = $user['username'];
-                header('Location: dashboard.php');
-                exit;
-            } else {
-                $error = 'Username atau password salah!';
-            }
+    if (empty($username) || empty($password)) {
+        $_SESSION['flash_message'] = ['type' => 'error', 'message' => 'Username dan password tidak boleh kosong!'];
+        header('Location: login.php');
+        exit;
+    }
+
+    // Ambil data user dari database
+    $stmt = $conn->prepare("SELECT id, username, password FROM users WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($user = $result->fetch_assoc()) {
+        // Verifikasi password
+        if (password_verify($password, $user['password'])) {
+            // Login berhasil
+            $stmt->close(); // Tutup statement di sini
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['username'] = $user['username'];
+            header('Location: dashboard.php');
+            exit;
         } else {
-            $error = 'Username atau password salah!';
+            // Password salah
+            $stmt->close(); // Tutup statement di sini
+            $_SESSION['flash_message'] = ['type' => 'error', 'message' => 'Username atau password salah!'];
+            header('Location: login.php');
+            exit;
         }
-        $stmt->close();
     } else {
-        $error = 'Username dan password tidak boleh kosong!';
+        // User tidak ditemukan
+        $stmt->close(); // Tutup statement di sini
+        $_SESSION['flash_message'] = ['type' => 'error', 'message' => 'Username atau password salah!'];
+        header('Location: login.php');
+        exit;
     }
 }
 
+// Data untuk view
 $data = [
     'title' => 'Login - CeritaKita',
-    'error' => $error,
-    'success_message' => $success_message
 ];
 
+// Render view 'login'
 render('login', $data, 'app');
 ?>
