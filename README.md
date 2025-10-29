@@ -1,151 +1,158 @@
-# CeritaKita
+# 📚 CeritaKita
 
-**CeritaKita** adalah platform aplikasi web sederhana yang memungkinkan pengguna untuk berbagi dan membaca cerita. Aplikasi ini dibangun menggunakan PHP native dan database MySQL, dengan fokus pada operasi CRUD (Create, Read, Update, Delete) untuk cerita, serta fungsionalitas autentikasi pengguna.
+> Platform aplikasi web sederhana untuk berbagi dan membaca cerita
+
+**CeritaKita** adalah platform berbasis web yang memungkinkan pengguna untuk berbagi dan membaca cerita. Dibangun menggunakan PHP native dan MySQL dengan fokus pada operasi CRUD dan autentikasi pengguna yang aman.
 
 ![Screenshot Aplikasi CeritaKita](img/ss.jpg)
 
 ---
 
-## Fitur yang Tersedia
+## ✨ Fitur Utama
 
-* **Autentikasi Pengguna**:
-    * Registrasi pengguna baru (minimal 6 karakter password).
-    * Login pengguna.
-    * Logout.
-    * Proteksi halaman (redirect ke login jika belum autentikasi).
-* **Manajemen Cerita (CRUD)**:
-    * **Create**: Pengguna yang sudah login dapat mempublikasikan cerita baru, termasuk judul, penulis, isi cerita, dan mengunggah gambar sampul.
-    * **Read**:
-        * Menampilkan daftar semua cerita di halaman "Kumpulan Cerita" dengan *lazy loading* / *pagination*.
-        * Melihat detail cerita di halaman terpisah.
-        * Menampilkan 2 cerita terbaru di halaman beranda.
-    * **Update**: Pengguna dapat mengedit cerita yang mereka miliki melalui dashboard.
-    * **Delete**: Pengguna dapat menghapus cerita yang mereka miliki melalui dashboard.
-* **Dashboard Pengguna**:
-    * Menampilkan daftar semua cerita yang telah ditulis oleh pengguna yang sedang login.
-    * Menyediakan tautan untuk menambah, mengedit, atau menghapus cerita.
-* **Fitur Tambahan**:
-    * **Pencarian**: Mencari cerita berdasarkan judul atau penulis di halaman "Kumpulan Cerita".
-    * **Pagination**: Navigasi halaman untuk menelusuri banyak cerita.
-    * **Upload Gambar**:
-        * Validasi sisi klien (client-side) untuk ukuran file (maks 2MB).
-        * Validasi sisi server (server-side) untuk tipe MIME (JPG, PNG, GIF) dan ukuran file.
-        * Gambar di-reproses di server untuk keamanan.
-        * Menggunakan gambar *placeholder* jika tidak ada gambar yang diunggah.
-    * **Dark Mode**: *Toggle* untuk mengubah tema tampilan antara mode terang dan gelap.
-    * **Notifikasi Modal**: Pesan *flash* (sukses atau error) ditampilkan dalam bentuk modal pop-up.
-    * **Modal Konfirmasi**: Konfirmasi muncul sebelum menghapus cerita.
+### 🔐 Autentikasi Pengguna
+- ✅ Registrasi pengguna baru (minimal 6 karakter password)
+- ✅ Login & Logout yang aman
+- ✅ Proteksi halaman otomatis (redirect ke login jika belum terautentikasi)
 
----
+### 📝 Manajemen Cerita (CRUD)
 
-## Kebutuhan Sistem
+#### Create (Tambah)
+Pengguna dapat mempublikasikan cerita baru lengkap dengan:
+- Judul cerita
+- Nama penulis
+- Isi cerita
+- Upload gambar sampul
 
-* **Server**: Apache / Nginx
-* **PHP**: Versi 7.4 atau lebih baru (disarankan 8.x)
-    * Ekstensi PHP: `mysqli`, `gd` (untuk pemrosesan gambar), `fileinfo` (untuk validasi MIME)
-* **Database**: MySQL 5.7 atau lebih baru / MariaDB
-* **Browser**: Browser modern (Chrome, Firefox, Safari, Edge)
+#### Read (Baca)
+- 📖 Daftar semua cerita dengan *lazy loading* / *pagination*
+- 📄 Detail cerita di halaman terpisah
+- 🆕 Menampilkan 2 cerita terbaru di halaman beranda
 
----
+#### Update (Edit)
+- ✏️ Edit cerita yang Anda miliki melalui dashboard
 
-## Cara Instalasi dan Konfigurasi
+#### Delete (Hapus)
+- 🗑️ Hapus cerita dengan konfirmasi modal
 
-Database SQL untuk tabel `users` dan `cerita` tidak disertakan di repositori ini. Anda perlu membuatnya secara manual.
+### 🎛️ Dashboard Pengguna
+- Kelola semua cerita yang telah Anda tulis
+- Akses cepat untuk menambah, mengedit, atau menghapus cerita
 
-**Struktur Tabel yang Dibutuhkan:**
+### 🎨 Fitur Tambahan
 
-1.  **`users`**:
-    * `id` (INT, Primary Key, Auto Increment)
-    * `username` (VARCHAR, Unique)
-    * `password` (VARCHAR - untuk menyimpan *hash*)
-2.  **`cerita`**:
-    * `id` (INT, Primary Key, Auto Increment)
-    * `user_id` (INT, Foreign Key ke `users.id`)
-    * `judul` (VARCHAR)
-    * `penulis` (VARCHAR)
-    * `isi` (TEXT)
-    * `gambar` (VARCHAR - untuk menyimpan path file)
-    * `tanggal_dibuat` (TIMESTAMP, Default: CURRENT_TIMESTAMP)
+| Fitur | Deskripsi |
+|-------|-----------|
+| 🔍 **Pencarian** | Cari cerita berdasarkan judul atau penulis |
+| 📄 **Pagination** | Navigasi halaman untuk menelusuri banyak cerita |
+| 🖼️ **Upload Gambar** | Validasi client & server-side, auto-reprocess untuk keamanan |
+| 🌙 **Dark Mode** | Toggle tema terang/gelap |
+| 💬 **Notifikasi Modal** | Flash message dalam bentuk pop-up yang elegan |
+| ⚠️ **Konfirmasi Modal** | Konfirmasi sebelum menghapus cerita |
 
 ---
 
-### 1. Instalasi dengan Docker (Rekomendasi)
+## 💻 Kebutuhan Sistem
 
-### Bagian 1: Prasyarat - Instalasi Docker
+### Server
+- Apache / Nginx
 
-Sebelum memulai, Anda harus memiliki **Docker Desktop** yang terinstal di sistem Anda (Windows, macOS, atau Linux).
+### PHP
+- **Versi**: 7.4 atau lebih baru (disarankan 8.x)
+- **Ekstensi yang diperlukan**:
+  - `mysqli` - Koneksi database
+  - `gd` - Pemrosesan gambar
+  - `fileinfo` - Validasi MIME type
 
-1.  **Unduh Docker Desktop**: Kunjungi situs web resmi [Docker](https://www.docker.com/products/docker-desktop/) dan unduh installer yang sesuai untuk sistem operasi Anda.
-2.  **Instal Docker Desktop**: Jalankan installer dan ikuti petunjuk di layar. Proses ini mungkin memerlukan restart komputer.
-3.  **Verifikasi Instalasi**: Setelah terinstal dan berjalan, buka Terminal (atau PowerShell/CMD di Windows) dan jalankan dua perintah berikut untuk memastikan Docker dan Docker Compose siap digunakan:
-    ```bash
-    docker --version
-    docker-compose --version
-    ```
-    *(Catatan: Docker Desktop versi modern sudah menyertakan Docker Compose di dalamnya).*
+### Database
+- MySQL 5.7+ / MariaDB
+
+### Browser
+- Browser modern (Chrome, Firefox, Safari, Edge)
 
 ---
 
-### Bagian 2: Struktur Folder Proyek
+## 🗄️ Struktur Database
 
-Untuk membuat panduan ini berfungsi, kita akan menempatkan file-file Docker di *root* folder proyek Anda agar mudah dikelola.
+> ⚠️ **Penting**: Database SQL tidak disertakan di repositori. Anda perlu membuat tabel secara manual.
 
-Pastikan struktur folder Anda terlihat seperti ini:
+### Tabel `users`
 
-praktikum-web-a24/
+```sql
+CREATE TABLE users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+```
 
+### Tabel `cerita`
+
+```sql
+CREATE TABLE cerita (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    judul VARCHAR(255) NOT NULL,
+    penulis VARCHAR(100) NOT NULL,
+    isi TEXT NOT NULL,
+    gambar VARCHAR(255),
+    tanggal_dibuat TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+```
+
+---
+
+## 🚀 Instalasi
+
+### Metode 1: Docker (Rekomendasi) 🐳
+
+#### Langkah 1: Install Docker Desktop
+
+1. Unduh [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+2. Install dan restart komputer jika diperlukan
+3. Verifikasi instalasi:
+
+```bash
+docker --version
+docker-compose --version
+```
+
+#### Langkah 2: Struktur Proyek
+
+Pastikan struktur folder Anda seperti ini:
+
+```
+ceritakita-web/
 ├── css/
-
 ├── img/
-
 ├── layouts/
-
 ├── partials/
-
 ├── uploads/
-
 ├── views/
-
 ├── app.js
-
-├── cerita.php
-
-├── ... (semua file .php lainnya)
-
-│
-
-├── Dockerfile           <-- (BARU: File untuk build image PHP)
-
-├── uploads.ini          <-- (BARU: File konfigurasi PHP kustom)
-
-├── docker-compose.yml   <-- (MODIFIKASI: Untuk menggunakan Dockerfile)
-
+├── *.php
+├── Dockerfile           ← BARU
+├── uploads.ini          ← BARU
+├── docker-compose.yml   ← MODIFIKASI
 └── koneksi.php
+```
 
----
+#### Langkah 3: File Konfigurasi Docker
 
-### Bagian 3: File Konfigurasi Docker
-
-Sekarang, buat tiga file berikut di dalam folder *root* `praktikum-web-a24/`.
-
-#### 1. `Dockerfile`
-Buat file bernama `Dockerfile` (tanpa ekstensi) dan salin kode ini:
+##### 📄 `Dockerfile`
 
 ```dockerfile
-# 1. Mulai dari image PHP-Apache (Basis Debian)
-# Kita gunakan versi 8.3-apache seperti permintaan Anda
+# Base image PHP 8.3 dengan Apache
 FROM php:8.3-apache
 
-# 2. Salin file konfigurasi kustom kita ke dalam folder konfigurasi PHP
-# Ini akan menaikkan batas memori, post, dan upload
+# Copy konfigurasi PHP kustom
 COPY uploads.ini /usr/local/etc/php/conf.d/custom-uploads.ini
 
-# 3. Instal ekstensi database yang dibutuhkan
-# (mysqli dan pdo_mysql)
+# Install ekstensi database
 RUN docker-php-ext-install mysqli pdo_mysql
 
-# 4. Instal dependensi sistem (Debian) yang dibutuhkan oleh ekstensi GD
-# Ini penting untuk memproses gambar (upload, resize, dll)
+# Install dependensi untuk GD
 RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
@@ -155,44 +162,31 @@ RUN apt-get update && apt-get install -y \
     zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# 5. Setelah dependensi sistem ada, baru kita konfigurasi dan instal ekstensi PHP 'gd'
-# Ini memungkinkan PHP bekerja dengan gambar (JPG, PNG, WebP)
+# Konfigurasi dan install GD
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
     && docker-php-ext-install -j$(nproc) gd
 
-# 6. Aktifkan modul rewrite Apache
-# Ini diperlukan jika Anda berencana menggunakan URL yang 'cantik' (cth: /cerita/1)
+# Enable Apache rewrite module
 RUN a2enmod rewrite
 ```
 
-#### 2. `uploads.ini`
-Buat file bernama `uploads.ini`. File ini akan menimpa pengaturan default PHP di dalam container.
+##### 📄 `uploads.ini`
 
 ```ini
-; File ini akan menaikkan batas upload dan memori PHP
+; Konfigurasi upload dan memori PHP
 
-; Menaikkan batas memori dari 128M ke 256M
 memory_limit = 256M
-
-; Menaikkan batas ukuran file yang bisa di-upload
-; Kita set ke 20M agar server tidak menolak file > 2MB
-; Validasi 2MB di dalam kode PHP (tambah_cerita.php) akan tetap berjalan
 upload_max_filesize = 20M
-
-; Menaikkan batas total data POST (termasuk file + form)
 post_max_size = 25M
 ```
-#### 3. `docker-compose.yml`
-Ini adalah file `docker-compose.yml` yang telah **dimodifikasi** untuk menggunakan `Dockerfile` baru Anda.
 
-```yml
+##### 📄 `docker-compose.yml`
+
+```yaml
 version: '3.8'
 
 services:
   web:
-    # MODIFIKASI: Ganti 'image' dengan 'build: .'
-    # Ini memberitahu Docker Compose untuk MEMBANGUN image dari
-    # Dockerfile di folder ini, alih-alih mengunduhnya.
     build: .
     container_name: ceritakita_web
     ports:
@@ -201,16 +195,13 @@ services:
       - ./:/var/www/html
     depends_on:
       - mysql
-    # CATATAN: 'command' untuk install ekstensi sudah dihapus
-    # karena semua ekstensi (mysqli, gd) sudah diinstal
-    # langsung di dalam Dockerfile.
 
   mysql:
     image: mysql:8.0
     container_name: ceritakita_db
     restart: unless-stopped
     ports:
-      - "3306:3306" # Anda bisa ubah port host jika 3306 sudah terpakai
+      - "3306:3306"
     environment:
       MYSQL_DATABASE: ceritakita_db
       MYSQL_USER: user_ceritakita
@@ -221,258 +212,272 @@ services:
 
 volumes:
   mysql_data:
-    # Volume ini akan menyimpan data DB Anda secara permanen
-    # walaupun container mysql dihapus.
 ```
 
-### Bagian 4: Instalasi dan Menjalankan Proyek
+#### Langkah 4: Konfigurasi Database
 
-Setelah semua file di atas (`Dockerfile`, `uploads.ini`, `docker-compose.yml`) berada di folder *root* proyek Anda, ikuti langkah-langkah berikut:
-
-1.  **Clone Repositori (Jika belum)**:
-    ```bash
-    git clone [https://github.com/ridhosetia/praktikum-web-a24.git](https://github.com/ridhosetia/praktikum-web-a24.git)
-    cd praktikum-web-a24
-    ```
-    *(Pastikan Anda membuat 3 file dari Bagian 3 di dalam folder ini)*
-
-2.  **Konfigurasi `koneksi.php`**:
-    Pastikan file `koneksi.php` Anda sesuai dengan *environment* di `docker-compose.yml`.
-    ```php
-    <?php
-    $db_host = 'mysql';      // HARUS 'mysql', sesuai nama service di docker-compose
-    $db_user = 'user_ceritakita'; // Sesuai MYSQL_USER
-    $db_pass = 'password_rahasia';  // Sesuai MYSQL_PASSWORD
-    $db_name = 'ceritakita_db';  // Sesuai MYSQL_DATABASE
-    
-    $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
-    // ... sisa file
-    ?>
-    ```
-
-3.  **Jalankan Docker Compose (Build Pertama Kali)**:
-    Buka Terminal Anda di folder `praktikum-web-a24` dan jalankan:
-    ```bash
-    docker-compose up -d --build
-    ```
-    * `up -d`: Menjalankan container di *background* (detached).
-    * `--build`: Ini adalah bagian **penting**. Ini memaksa Docker Compose untuk *membangun (build)* image kustom Anda dari `Dockerfile` sebelum menjalankannya. Ini mungkin memakan waktu beberapa menit saat pertama kali dijalankan.
-
-4.  **Setup Database**:
-    Container Anda sekarang berjalan.
-    * Gunakan *database client* favorit Anda (seperti DBeaver, DataGrip, atau HeidiSQL).
-    * Buat koneksi baru ke `localhost` pada port `3306`.
-    * Gunakan username `user_ceritakita` dan password `password_rahasia`.
-    * Masuk ke database `ceritakita_db`.
-    * Buat tabel `users` dan `cerita` yang dibutuhkan oleh aplikasi. (Lihat struktur tabel di bagian atas README ini).
-
-5.  **Akses Aplikasi**:
-    Selesai! Buka browser Anda dan akses `http://localhost:8000`.
-
----
-
-### Perintah Docker Tambahan (Berguna)
-
-* **Untuk mematikan container**:
-    ```bash
-    docker-compose down
-    ```
-* **Untuk mematikan DAN menghapus data database (Reset total)**:
-    ```bash
-    docker-compose down -v
-    ```
-* **Untuk melihat log (jika terjadi error)**:
-    ```bash
-    docker-compose logs -f web
-    ```
-    (Ganti `web` dengan `mysql` untuk melihat log database)
-* **Untuk membangun ulang image jika Anda mengubah `Dockerfile`**:
-    ```bash
-    docker-compose build
-    ```
-
----
-
-### 2. Instalasi dengan XAMPP
-
-1.  **Clone Repositori**:
-    Clone atau unduh repositori ini ke dalam folder `htdocs` XAMPP Anda.
-    ```bash
-    cd C:\xampp\htdocs
-    git clone [https://github.com/ridhosetia/praktikum-web-a24.git](https://github.com/ridhosetia/praktikum-web-a24.git)
-    ```
-    (Aplikasi akan berada di `C:\xampp\htdocs\praktikum-web-a24`)
-
-2.  **Jalankan XAMPP**:
-    Pastikan modul **Apache** dan **MySQL** berjalan dari XAMPP Control Panel.
-
-3.  **Buat Database**:
-    * Buka `http://localhost/phpmyadmin`.
-    * Buat database baru, misalnya `ceritakita_db`.
-    * Buat tabel `users` dan `cerita` sesuai struktur di atas.
-
-4.  **Konfigurasi `koneksi.php`**:
-    Sesuaikan file `koneksi.php` dengan pengaturan XAMPP Anda (biasanya `root` tanpa password).
-    ```php
-    <?php
-    $db_host = 'localhost';
-    $db_user = 'root';
-    $db_pass = ''; // Default XAMPP
-    $db_name = 'ceritakita_db';
-    
-    $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
-    // ... sisa file
-    ?>
-    ```
-
-5.  **Akses Aplikasi**:
-    Buka `http://localhost/praktikum-web-a24` di browser Anda.
-
----
-
-### 3. Instalasi dengan Laragon
-
-1.  **Clone Repositori**:
-    Clone atau unduh repositori ini ke dalam folder `www` Laragon Anda.
-    ```bash
-    cd C:\laragon\www
-    git clone [https://github.com/ridhosetia/praktikum-web-a24.git](https://github.com/ridhosetia/praktikum-web-a24.git)
-    ```
-    (Aplikasi akan berada di `C:\laragon\www\praktikum-web-a24`)
-
-2.  **Jalankan Laragon**:
-    Klik "Start All" untuk menjalankan Apache/Nginx dan MySQL.
-
-3.  **Buat Database**:
-    * Klik tombol "Database" di Laragon untuk membuka Adminer/HeidiSQL.
-    * Buat database baru, misalnya `ceritakita_db`.
-    * Buat tabel `users` dan `cerita` sesuai struktur di atas.
-
-4.  **Konfigurasi `koneksi.php`**:
-    Sesuaikan file `koneksi.php` dengan pengaturan Laragon Anda (defaultnya `root` tanpa password).
-    ```php
-    <?php
-    $db_host = 'localhost';
-    $db_user = 'root';
-    $db_pass = ''; // Default Laragon
-    $db_name = 'ceritakita_db';
-    
-    $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
-    // ... sisa file
-    ?>
-    ```
-
-5.  **Akses Aplikasi**:
-    Laragon biasanya membuat *virtual host* secara otomatis. Anda mungkin bisa mengaksesnya di `http://praktikum-web-a24.test`. Jika tidak, `http://localhost/praktikum-web-a24` juga seharusnya berfungsi.
-
----
-
-## Struktur Folder
-/
-
-├── css/
-
-│   ├── cerita.css
-
-│   ├── dashboard.css
-
-│   ├── login.css
-
-│   └── style.css
-
-├── img/
-
-│   └── placeholder.png
-
-├── layouts/
-
-│   └── app.php
-
-├── partials/
-
-│   ├── _footer.php
-
-│   ├── _header.php
-
-│   └── _nav.php
-
-├── uploads/              <- (Folder untuk gambar yang di-upload pengguna)
-
-│   ├── img_xxx.png
-
-│   └── ...
-
-├── views/
-
-│   ├── cerita.php
-
-│   ├── dashboard.php
-
-│   ├── detail_cerita.php
-
-│   ├── edit_cerita.php
-
-│   ├── home.php
-
-│   ├── login.php
-
-│   ├── register.php
-
-│   └── tambah_cerita.php
-
-├── app.js
-
-├── cerita.php
-
-├── dashboard.php
-
-├── detail_cerita.php
-
-├── edit_cerita.php
-
-├── hapus_cerita.php
-
-├── helpers.php
-
-├── index.php
-
-├── koneksi.php
-
-├── login.php
-
-├── logout.php
-
-├── register.php
-
-├── tambah_cerita.php
-
-└── README.md
-
----
-
-## Contoh Environment Config
-
-Aplikasi ini tidak menggunakan file `.env`. Konfigurasi koneksi database diatur langsung di `koneksi.php`.
-
-**Contoh `koneksi.php`:**
+Edit file `koneksi.php`:
 
 ```php
 <?php
-// Pengaturan koneksi database
-$db_host = 'localhost'; // atau 'mysql' jika pakai Docker
-$db_user = 'root';      // User database Anda
-$db_pass = '250507';      // Password database Anda (kosongkan jika tidak ada)
-$db_name = 'ceritakita_db';  // Nama database Anda
+$db_host = 'mysql';                  // Nama service di docker-compose
+$db_user = 'user_ceritakita';        // Sesuai MYSQL_USER
+$db_pass = 'password_rahasia';       // Sesuai MYSQL_PASSWORD
+$db_name = 'ceritakita_db';          // Sesuai MYSQL_DATABASE
 
-// Membuat koneksi ke database
 $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
 
-// Memeriksa koneksi
 if ($conn->connect_error) {
-    die("Koneksi ke database gagal: " . $conn->connect_error);
+    die("Koneksi gagal: " . $conn->connect_error);
 }
 
-// Mengatur set karakter untuk komunikasi dengan database
 $conn->set_charset("utf8mb4");
 ?>
 ```
+
+#### Langkah 5: Jalankan Aplikasi
+
+```bash
+# Clone repository
+git clone https://github.com/ridhosetia/ceritakita-web.git
+cd ceritakita-web
+
+# Build dan jalankan container
+docker-compose up -d --build
+```
+
+#### Langkah 6: Setup Database
+
+Gunakan database client (DBeaver, HeidiSQL, dll):
+- **Host**: `localhost`
+- **Port**: `3306`
+- **Username**: `user_ceritakita`
+- **Password**: `password_rahasia`
+- **Database**: `ceritakita_db`
+
+Jalankan query SQL untuk membuat tabel `users` dan `cerita`.
+
+#### Langkah 7: Akses Aplikasi
+
+🎉 Buka browser: `http://localhost:8000`
+
+---
+
+### 📋 Perintah Docker Berguna
+
+```bash
+# Matikan container
+docker-compose down
+
+# Matikan dan hapus data (reset total)
+docker-compose down -v
+
+# Lihat log
+docker-compose logs -f web
+
+# Build ulang setelah ubah Dockerfile
+docker-compose build
+```
+
+---
+
+### Metode 2: XAMPP 🔴
+
+1. **Clone ke folder htdocs**
+   ```bash
+   cd C:\xampp\htdocs
+   git clone https://github.com/ridhosetia/ceritakita-web.git
+   ```
+
+2. **Jalankan XAMPP**
+   - Start Apache dan MySQL dari Control Panel
+
+3. **Buat Database**
+   - Buka `http://localhost/phpmyadmin`
+   - Buat database `ceritakita_db`
+   - Buat tabel `users` dan `cerita`
+
+4. **Konfigurasi koneksi.php**
+   ```php
+   <?php
+   $db_host = 'localhost';
+   $db_user = 'root';
+   $db_pass = '';              // Default XAMPP kosong
+   $db_name = 'ceritakita_db';
+   
+   $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
+   $conn->set_charset("utf8mb4");
+   ?>
+   ```
+
+5. **Akses Aplikasi**
+   - 🌐 `http://localhost/ceritakita-web`
+
+---
+
+### Metode 3: Laragon 🔷
+
+1. **Clone ke folder www**
+   ```bash
+   cd C:\laragon\www
+   git clone https://github.com/ridhosetia/ceritakita-web.git
+   ```
+
+2. **Jalankan Laragon**
+   - Klik "Start All"
+
+3. **Buat Database**
+   - Klik tombol "Database" di Laragon
+   - Buat database `ceritakita_db`
+   - Buat tabel `users` dan `cerita`
+
+4. **Konfigurasi koneksi.php**
+   ```php
+   <?php
+   $db_host = 'localhost';
+   $db_user = 'root';
+   $db_pass = '';              // Default Laragon kosong
+   $db_name = 'ceritakita_db';
+   
+   $conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
+   $conn->set_charset("utf8mb4");
+   ?>
+   ```
+
+5. **Akses Aplikasi**
+   - 🌐 `http://ceritakita-web.test` (virtual host)
+   - atau `http://localhost/ceritakita-web`
+
+---
+
+## 📁 Struktur Folder
+
+```
+ceritakita-web/
+│
+├── 📂 css/
+│   ├── cerita.css
+│   ├── dashboard.css
+│   ├── login.css
+│   └── style.css
+│
+├── 📂 img/
+│   └── placeholder.png
+│
+├── 📂 layouts/
+│   └── app.php
+│
+├── 📂 partials/
+│   ├── _footer.php
+│   ├── _header.php
+│   └── _nav.php
+│
+├── 📂 uploads/           ← Upload pengguna
+│   ├── img_xxx.png
+│   └── ...
+│
+├── 📂 views/
+│   ├── cerita.php
+│   ├── dashboard.php
+│   ├── detail_cerita.php
+│   ├── edit_cerita.php
+│   ├── home.php
+│   ├── login.php
+│   ├── register.php
+│   └── tambah_cerita.php
+│
+├── 📄 app.js
+├── 📄 cerita.php
+├── 📄 dashboard.php
+├── 📄 detail_cerita.php
+├── 📄 edit_cerita.php
+├── 📄 hapus_cerita.php
+├── 📄 helpers.php
+├── 📄 index.php
+├── 📄 koneksi.php
+├── 📄 login.php
+├── 📄 logout.php
+├── 📄 register.php
+├── 📄 tambah_cerita.php
+└── 📄 README.md
+```
+
+---
+
+## 🔧 Konfigurasi Database
+
+Aplikasi ini tidak menggunakan file `.env`. Konfigurasi koneksi database diatur langsung di `koneksi.php`.
+
+### Contoh Template
+
+```php
+<?php
+// ============================================
+// KONFIGURASI DATABASE
+// ============================================
+
+$db_host = 'localhost';        // Host database
+$db_user = 'root';             // Username database
+$db_pass = '';                 // Password database (kosongkan jika tidak ada)
+$db_name = 'ceritakita_db';    // Nama database
+
+// ============================================
+// KONEKSI DATABASE
+// ============================================
+
+$conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
+
+// Cek koneksi
+if ($conn->connect_error) {
+    die("❌ Koneksi ke database gagal: " . $conn->connect_error);
+}
+
+// Set charset untuk mencegah masalah encoding
+$conn->set_charset("utf8mb4");
+?>
+```
+
+---
+
+## 🎯 Panduan Penggunaan
+
+### Untuk Pengguna Baru
+
+1. **Registrasi**: Buat akun baru di halaman register
+2. **Login**: Masuk dengan username dan password Anda
+3. **Tambah Cerita**: Klik tombol "Tambah Cerita" di dashboard
+4. **Kelola Cerita**: Edit atau hapus cerita Anda kapan saja
+
+### Tips Keamanan
+
+- ✅ Gunakan password yang kuat (minimal 6 karakter)
+- ✅ Logout setelah selesai menggunakan aplikasi
+- ✅ Jangan share kredensial login Anda
+
+---
+
+## 🤝 Kontribusi
+
+Kontribusi sangat diterima! Silakan fork repository ini dan buat pull request.
+
+---
+
+## 📄 Lisensi
+
+Proyek ini bersifat open source untuk keperluan edukasi.
+
+---
+
+## 📧 Kontak
+
+Jika ada pertanyaan atau masalah, silakan buat issue di repository GitHub.
+
+---
+
+<div align="center">
+
+**Dibuat dengan ❤️ menggunakan PHP & MySQL**
+
+⭐ Jangan lupa beri bintang jika project ini bermanfaat!
+
+</div>
