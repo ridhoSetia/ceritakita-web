@@ -46,7 +46,19 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!notificationModal) return;
         modalTitle.textContent = title;
         modalMessage.textContent = message;
-        modalTitle.style.color = type === 'error' ? '#e74c3c' : '#27ae60';
+
+        // Reset style sebelum menerapkan yang baru
+        modalTitle.style.color = '';
+        modalCloseBtn.classList.remove('danger');
+
+        if (type === 'error') {
+            modalTitle.style.color = '#e74c3c'; // Warna judul merah
+            modalCloseBtn.classList.add('danger'); // Tambahkan kelas .danger ke tombol
+        } else {
+            modalTitle.style.color = '#27ae60'; // Warna judul hijau (sukses)
+            // Tombol akan menggunakan style default (hijau)
+        }
+
         notificationModal.style.display = 'flex';
         setTimeout(() => notificationModal.classList.add('show'), 10);
     }
@@ -54,7 +66,15 @@ document.addEventListener("DOMContentLoaded", () => {
     function hideNotificationModal() {
         if (!notificationModal) return;
         notificationModal.classList.remove('show');
-        setTimeout(() => notificationModal.style.display = 'none', 300);
+        
+        // Cleanup style setelah animasi fade-out selesai
+        setTimeout(() => {
+            notificationModal.style.display = 'none';
+            
+            // Reset style modal untuk penggunaan berikutnya
+            modalTitle.style.color = '';
+            modalCloseBtn.classList.remove('danger');
+        }, 300); // 300ms harus sama dengan durasi transisi di CSS
     }
 
     if (modalCloseBtn) {
@@ -109,6 +129,32 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.target === notificationModal) hideNotificationModal();
         if (e.target === confirmationModal) hideConfirmationModal();
     });
+
+    // --- LOGIKA VALIDASI UKURAN FILE CLIENT-SIDE ---
+    // Kita target form dengan class .story-form, yang ada di tambah & edit
+    const storyForm = document.querySelector('.story-form'); 
+    
+    if (storyForm) {
+        storyForm.addEventListener('submit', function(event) {
+            const fileInput = document.getElementById('gambar'); // ID input file
+            if (fileInput && fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                const maxFileSize = 2 * 1024 * 1024; // 2 MB (batas yang kita inginkan)
+
+                if (file.size > maxFileSize) {
+                    // 1. Hentikan submit form
+                    event.preventDefault(); 
+                    
+                    // 2. Tampilkan modal error
+                    showNotificationModal(
+                        'Terjadi Kesalahan', 
+                        'Ukuran file terlalu besar. Maksimal adalah 2 MB.', 
+                        'error'
+                    );
+                }
+            }
+        });
+    }
 
     // --- Logika Quote (Tetap Sama) ---
     const quoteEl = document.querySelector("#quote");
