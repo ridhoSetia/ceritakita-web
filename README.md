@@ -4,7 +4,7 @@
 
 **CeritaKita** adalah platform berbasis web yang memungkinkan pengguna untuk berbagi dan membaca cerita. Dibangun menggunakan PHP native dan MySQL dengan fokus pada operasi CRUD dan autentikasi pengguna yang aman.
 
-![Screenshot Aplikasi CeritaKita](img/ss.jpg)
+![Screenshot Aplikasi CeritaKita](img/ss.png)
 
 ---
 
